@@ -1,11 +1,11 @@
-function Card({name,category}){
+function Card({name,category,image}){
     // console.log(props)
     // const {name,category}=props
 
     return (
 
         <div>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ718nztPNJfCbDJjZG8fOkejBnBAeQw5eAUA&s" alt="" />
+            <img src={image} alt=""  style={{height:"200px"}}/>
             <p>{name}</p>
             <p>{category}</p>
         </div>
