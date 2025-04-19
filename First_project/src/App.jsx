@@ -1,12 +1,13 @@
  import Card from "./Card"
  import "./App.css"
- import { useState } from "react"
+ import { useState,useEffect } from "react"
  import { Header } from "./Header"
  import { Footer } from "./Footer"
 
 
 
  function App(){
+  console.log("app component starts")
 
   const product=[
     {name:"mountains",category:"Travel",image:"https://plus.unsplash.com/premium_photo-1681711647066-ef84575c0d95?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZHVjdCUyMHBob3RvZ3JhcGh5fGVufDB8fDB8fHww",},
@@ -28,25 +29,40 @@
 const [x,setX]=useState(10)
 const [searchText,setSearchText]=useState("")
 const [filterdata,setFilterData]=useState(product)
+const [alldata,setAlldata]=useState([])
 // const [a,setA]=useState(10)
 // it return two things variable , function 
 const updatevalue=()=>{
     setX(x+1)
   }
 
-  // const updateSearch=()=>{
-  //   setSearchText("hello")
-  // }
-
   const searchData=()=>{
     console.log(searchText)
-    const filterdata=product.filter((items,index)=>{
+    const filterdata=alldata.filter((items,index)=>{
       return items.category.toLowerCase().includes(searchText.toLowerCase())
     })
-    console.log(filterdata)
+    // console.log(filterdata)
     setFilterData(filterdata)
 
   }
+
+  // call api
+
+ const getdata=async ()=>{
+   const resp=await fetch("https://fakestoreapi.com/products");
+   const data=await resp.json()
+   console.log(data)
+   setAlldata(data)
+   setFilterData(data)
+  }
+ 
+
+  useEffect(()=>{
+    getdata()
+    console.log("useEffect called")
+  },[])
+
+  console.log("component rendered")
 
   return (
     <>
@@ -61,7 +77,7 @@ const updatevalue=()=>{
         }} />
         <button onClick={searchData}>searchtext</button>
     </div>
-    <div style={{display:"flex",justifyContent:"space-evenly"}}>
+    <div style={{display:"flex",justifyContent:"space-evenly",flexWrap:"wrap"}}>
     {
       filterdata.map((value,index)=>{
         return(

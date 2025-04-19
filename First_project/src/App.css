@@ -17,3 +17,8 @@
   text-align:center;
   height:40px
 }
+.prd-card{
+  height:max-content;
+  width:250px;
+  border:1px solid black;
+}
