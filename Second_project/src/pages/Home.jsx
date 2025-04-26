@@ -1,32 +1,41 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router'
+import { Card } from '../Components/Card'
 
 export const Home = () => {
+	const [categorydata,setCategoryData]=useState([])
+
+	const getAllcategory=async()=>{
+		const res=await fetch('https://dummyjson.com/products/categories')
+		const data=await res.json()
+		console.log(data)
+		setCategoryData(data)
+	}
+	useEffect(()=>{
+		getAllcategory()
+	},[])
   return (
-    <div>
-        <main className="center-content">
-	<h1>
-		Doel Javid is:
-		<div className="h1-scroll-div">
-			<div className="h1-scroll-content">
-				<div aria-label="a programmer,">a Programmer</div>
-				<div aria-label="an artist,">an Artist</div>
-				<div aria-label="a designer.">a Designer</div>
-				<div aria-hidden="true">a Baker</div>
-				<div aria-hidden="true">a Programmer</div>
-			</div>
-		</div>
-	</h1>
-</main>
-  <div style={{textAlign:"center"}}>
- <Link to={"/login"}> <button style={{height:"40px",width:"150px",}}>login</button></Link>
-  </div>
+   
+ <>
+ <div className=''>
+	<h1>Home</h1>
+ </div>
 
-{/* <footer>
-	<p>Font family is Raleway from <a href="https://fonts.google.com/specimen/Raleway" target="_blank">Google Fonts</a>.</p>
-</footer> */}
+ <div>
+	<h3 className='text-4xl text-indigo-700 my-4'>Shop by category</h3>
+	<div className='flex flex-wrap justify-around'>
 
+{
+categorydata?.map((cat,index)=>{
+	return(
+	<Link  key={index} to={`/productpage/${cat.slug}`}>	<Card cat={cat}></Card></Link>
+	)
 
-    </div>
+})
+
+}
+	</div>
+ </div>
+ </>
   )
 }
