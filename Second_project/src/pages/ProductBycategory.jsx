@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router'
+import { useParams,Link } from 'react-router'
 
 import { ProductCard } from '../Components/ProductCard'
 export const ProductBycategory = () => {
@@ -27,7 +27,7 @@ getProducts()
 
 productdata?.map((prd,index)=>{
     return(
-        <ProductCard key={prd.id} prd={prd}/>
+     <Link to={`/productpage/${prd.category}/productdescription/${prd.id}`} key={prd.id}>   <ProductCard  prd={prd}/> </Link>
     )
 })
 }
