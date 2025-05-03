@@ -1,42 +1,41 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router'
+import { Card } from '../Components/Card'
 
 export const Home = () => {
-	const url = 'https://youtube-data8.p.rapidapi.com/auto-complete/?q=cartoon&hl=en&gl=US';
-const options = {
-	method: 'GET',
-	headers: {
-		'x-rapidapi-key': '221a169e29msh3263d9eb3ab50e5p137ef9jsna217e6a58a33',
-		'x-rapidapi-host': 'youtube-data8.p.rapidapi.com'
-	}
-};
-	
-	const callApi= async()=>{
+	const [categorydata,setCategoryData]=useState([])
 
-	try {
-		const response = await fetch(url, options);
-		const result = await response.json();
-		console.log(result);
-	} catch (error) {
-		console.error(error);
+	const getAllcategory=async()=>{
+		const res=await fetch('https://dummyjson.com/products/categories')
+		const data=await res.json()
+		console.log(data)
+		setCategoryData(data)
 	}
-}
-
 	useEffect(()=>{
-		callApi()
+		getAllcategory()
 	},[])
   return (
-    <div>
-      <h1>Home page</h1>
-  <div style={{textAlign:"center"}}>
- <Link to={"/login"}> <button style={{height:"40px",width:"150px",}}>login</button></Link>
-  </div>
+   
+ <>
+ <div className=''>
+	<h1>Home</h1>
+ </div>
 
-{/* <footer>
-	<p>Font family is Raleway from <a href="https://fonts.google.com/specimen/Raleway" target="_blank">Google Fonts</a>.</p>
-</footer> */}
+ <div>
+	<h3 className='text-4xl text-indigo-700 my-4'>Shop by category</h3>
+	<div className='flex flex-wrap justify-around'>
 
+{
+categorydata?.map((cat,index)=>{
+	return(
+	<Link  key={index} to={`/productpage/${cat.slug}`}>	<Card cat={cat}></Card></Link>
+	)
 
-    </div>
+})
+
+}
+	</div>
+ </div>
+ </>
   )
 }

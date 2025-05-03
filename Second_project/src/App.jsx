@@ -7,6 +7,8 @@ import { Contact } from "./pages/Contact";
 import { Blog } from "./pages/Blog";
 import Footer from "./Components/Footer";
 import { Login } from "./pages/Login";
+import { ProductBycategory } from "./pages/ProductBycategory";
+import { PrdDesc } from "./pages/PrdDesc";
 function App(){
   return (
     <>
@@ -18,6 +20,9 @@ function App(){
       <Route path="/contact" element={<Contact/>}/>
       <Route path="/Blog" element={<Blog/>}/>
       <Route path="/login" element={<Login/>}/>
+      <Route path="/productpage/:category" element={<ProductBycategory/>}/> 
+      {/* dynamic route */}
+      <Route path="/productpage/:category/productdescription/:id" element={<PrdDesc/>}/>
 
     </Routes>
     <Footer/>
