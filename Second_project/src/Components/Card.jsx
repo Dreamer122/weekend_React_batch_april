@@ -1,18 +1,5 @@
 import React from 'react'
 
-<<<<<<< HEAD
-export const Card = () => {
-  return (
-    <>
-    
-    <div className='card'>
-        <img src="" alt="" />
-        <p>title</p>
-        <p>price</p>
-
-        </div>
-        </>
-=======
 export const Card = (props) => {
     const {cat}=props
   return (
@@ -23,6 +10,5 @@ export const Card = (props) => {
 
    </div>
    </>
->>>>>>> 40ab9c9b687f448a3cc7e21e751c88d86db656d6
   )
 }

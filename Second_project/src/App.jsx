@@ -9,6 +9,7 @@ import Footer from "./Components/Footer";
 import { Login } from "./pages/Login";
 import { ProductBycategory } from "./pages/ProductBycategory";
 import { PrdDesc } from "./pages/PrdDesc";
+import { Men } from "./pages/Blogspages/Men";
 function App(){
   return (
     <>
@@ -18,7 +19,11 @@ function App(){
       <Route path="/" element={<Home/>}/>
       <Route path="/about" element={<About/>}/>
       <Route path="/contact" element={<Contact/>}/>
-      <Route path="/Blog" element={<Blog/>}/>
+      <Route path="/Blog" element={<Blog/>}>  
+      <Route index element={<Men/>}/>
+      <Route path="womenfashion" element={<h1>womenfashion </h1>}/>
+      <Route path="kidsfashion" element={<h1>kids fashion </h1>}/>
+      </Route>
       <Route path="/login" element={<Login/>}/>
       <Route path="/productpage/:category" element={<ProductBycategory/>}/> 
       {/* dynamic route */}
