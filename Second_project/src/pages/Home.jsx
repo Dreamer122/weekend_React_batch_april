@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState ,useRef} from 'react'
 import { Link } from 'react-router'
 import { Card } from '../Components/Card'
 import { LodingCard } from '../Components/LodingCard'
@@ -6,6 +6,16 @@ import { LodingCard } from '../Components/LodingCard'
 export const Home = () => {
 	const [categorydata,setCategoryData]=useState([])
 	const [isLoading,setisLoading]=useState(true)
+const inputref=	useRef()
+const newref=useRef(0)
+console.log(newref)
+const focusoninput=()=>{
+	inputref.current.value="hello"
+	inputref.current.focus()
+	// inputref.current.style.backgroundColor="green"
+	// newref.current.innerHTML="this is use ref hook in react"
+	console.log( inputref.current.type)
+}
 
 	const getAllcategory=async()=>{
 		setisLoading(true)
@@ -17,12 +27,16 @@ export const Home = () => {
 	}
 	useEffect(()=>{
 		getAllcategory()
+		focusoninput()
 	},[])
   return (
    
  <>
  <div className=''>
-	<h1>Home</h1>
+	<h1 >Home</h1>
+	<div className=' w-1/2 m-auto text-center'>
+		<input type="text" name='searchbar' ref={inputref} placeholder='search by category'  className='h-12 w-3/4 bg-pink-200 text-pink-800'/> <button className='px-4 py-3 bg-pink-800 text-white'>search category</button>
+	</div>
  </div>
 
  <div>

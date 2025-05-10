@@ -12,6 +12,8 @@ function Navbar(){
                 <li> <NavLink to="/about"> about </NavLink></li>
                 <li> <NavLink to="/contact"> contact </NavLink></li>
                 <li> <NavLink to="/Blog"> Blog </NavLink></li>
+                <li> <NavLink to="/cart"> cart </NavLink></li>
+                <li> <NavLink to="/login"> login </NavLink></li>
                
             </ul>
         </div>
