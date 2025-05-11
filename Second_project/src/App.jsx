@@ -12,11 +12,18 @@ import { PrdDesc } from "./pages/PrdDesc";
 import { Men } from "./pages/Blogspages/Men";
 import { CartPage } from "./pages/CartPage";
 import { ProtectedRoute } from "./Components/ProtectedRoute";
+import { useState } from "react";
 function App(){
+  const [cart,setCart]=useState([1,2])
+  const addtocart=(product)=>{
+    setCart([...cart,product])
+    console.log(cart)
+
+  }
   return (
     <>
     <BrowserRouter>
-  <Navbar/>
+  <Navbar length={cart.length}/>
     <Routes>
       <Route path="/" element={<Home/>}/>
       <Route path="/about" element={<About/>}/>
@@ -29,9 +36,9 @@ function App(){
 
       <Route path="/login" element={<Login/>}/>
       <Route path="/cart" element={<ProtectedRoute><CartPage/></ProtectedRoute>}/>
-      <Route path="/productpage/:category" element={<ProductBycategory/>}/> 
+      <Route path="/productpage/:category" element={<ProductBycategory addtocart={addtocart}/>}/> 
       {/* dynamic route */}
-      <Route path="/productpage/:category/productdescription/:id" element={<PrdDesc/>}/>
+      <Route path="/productpage/:category/productdescription/:id" element={<PrdDesc addtocart={addtocart}/>}/>
 
     </Routes>
     <Footer/>

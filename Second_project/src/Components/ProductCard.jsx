@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const ProductCard = ({prd}) => {
+export const ProductCard = ({prd,addtocart}) => {
 
   return (
    <>
@@ -12,6 +12,7 @@ export const ProductCard = ({prd}) => {
               />
               <h3 className="mt-4 text-sm text-gray-700">{prd.title}</h3>
               <p className="mt-1 text-lg font-medium text-gray-900">{prd.price}</p>
+            <button onClick={()=>addtocart(prd)}>add to cart</button>
             </div>
    </>
   )

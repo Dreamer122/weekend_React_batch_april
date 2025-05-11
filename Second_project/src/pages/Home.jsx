@@ -2,10 +2,11 @@ import React, { useEffect, useState ,useRef} from 'react'
 import { Link } from 'react-router'
 import { Card } from '../Components/Card'
 import { LodingCard } from '../Components/LodingCard'
+import { useCallApi } from '../util/useCallApi'
 
 export const Home = () => {
-	const [categorydata,setCategoryData]=useState([])
-	const [isLoading,setisLoading]=useState(true)
+	// const [categorydata,setCategoryData]=useState([])
+	// const [isLoading,setisLoading]=useState(false)
 const inputref=	useRef()
 const newref=useRef(0)
 console.log(newref)
@@ -17,16 +18,18 @@ const focusoninput=()=>{
 	console.log( inputref.current.type)
 }
 
-	const getAllcategory=async()=>{
-		setisLoading(true)
-		const res=await fetch('https://dummyjson.com/products/categories')
-		const data=await res.json()
-		console.log(data)
-		setisLoading(false)
-		setCategoryData(data)
-	}
+	// const getAllcategory=async()=>{
+	// 	setisLoading(true)
+	// 	const res=await fetch('https://dummyjson.com/products/categories')
+	// 	const data=await res.json()
+	// 	console.log(data)
+	// 	setisLoading(false)
+	// 	setCategoryData(data)
+	// }
+
+const [categorydata,isLoading]=	useCallApi('https://dummyjson.com/products/categories')
 	useEffect(()=>{
-		getAllcategory()
+		// getAllcategory()
 		focusoninput()
 	},[])
   return (

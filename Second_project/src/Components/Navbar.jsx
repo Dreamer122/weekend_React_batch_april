@@ -1,5 +1,7 @@
 import { NavLink } from "react-router"
-function Navbar(){
+import { useOnline } from "../util/useOnline"
+function Navbar({length}){
+    const online=useOnline()
     return (
         <>
        <div className="nav">
@@ -12,8 +14,11 @@ function Navbar(){
                 <li> <NavLink to="/about"> about </NavLink></li>
                 <li> <NavLink to="/contact"> contact </NavLink></li>
                 <li> <NavLink to="/Blog"> Blog </NavLink></li>
-                <li> <NavLink to="/cart"> cart </NavLink></li>
+                <li> <NavLink to="/cart"> cart <span>{length}</span> </NavLink></li>
                 <li> <NavLink to="/login"> login </NavLink></li>
+                <li> { online?"🟢":"🔴"
+                    } </li>
+
                
             </ul>
         </div>
