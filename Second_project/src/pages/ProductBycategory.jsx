@@ -31,7 +31,9 @@ export const ProductBycategory = ({addtocart}) => {
 productdata?.products?.map((prd,index)=>{
     return(
      <Link to={`/productpage/${prd.category}/productdescription/${prd.id}`} key={prd.id}>  
-      <ProductCard addtocart={addtocart}  prd={prd}/> </Link>
+      <ProductCard addtocart={addtocart}  prd={prd}>
+      
+        </ProductCard> </Link>
     )
 })
 }

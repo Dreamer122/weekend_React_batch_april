@@ -1,6 +1,10 @@
 import React from 'react'
-
-export const ProductCard = ({prd,addtocart}) => {
+import { useContext } from 'react'
+import { CartContext } from '../Context/CartContext'
+export const ProductCard = (props) => {
+  const {prd}=props
+  console.log(props)
+ const {addCart}= useContext(CartContext)
 
   return (
    <>
@@ -12,7 +16,7 @@ export const ProductCard = ({prd,addtocart}) => {
               />
               <h3 className="mt-4 text-sm text-gray-700">{prd.title}</h3>
               <p className="mt-1 text-lg font-medium text-gray-900">{prd.price}</p>
-            <button onClick={()=>addtocart(prd)}>add to cart</button>
+            <button onClick={()=>addCart(prd)}>add to cart</button>
             </div>
    </>
   )

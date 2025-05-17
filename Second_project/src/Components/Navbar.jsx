@@ -1,6 +1,9 @@
 import { NavLink } from "react-router"
 import { useOnline } from "../util/useOnline"
-function Navbar({length}){
+import { CartContext } from "../Context/CartContext"
+import { useContext } from "react"
+function Navbar(){
+    const {cart}=useContext(CartContext)
     const online=useOnline()
     return (
         <>
@@ -14,7 +17,7 @@ function Navbar({length}){
                 <li> <NavLink to="/about"> about </NavLink></li>
                 <li> <NavLink to="/contact"> contact </NavLink></li>
                 <li> <NavLink to="/Blog"> Blog </NavLink></li>
-                <li> <NavLink to="/cart"> cart <span>{length}</span> </NavLink></li>
+                <li> <NavLink to="/cart"> cart <span>{cart.length}</span> </NavLink></li>
                 <li> <NavLink to="/login"> login </NavLink></li>
                 <li> { online?"🟢":"🔴"
                     } </li>

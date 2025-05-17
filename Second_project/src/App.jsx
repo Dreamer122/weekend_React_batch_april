@@ -12,18 +12,13 @@ import { PrdDesc } from "./pages/PrdDesc";
 import { Men } from "./pages/Blogspages/Men";
 import { CartPage } from "./pages/CartPage";
 import { ProtectedRoute } from "./Components/ProtectedRoute";
-import { useState } from "react";
+import {Toaster} from "react-hot-toast"
 function App(){
-  const [cart,setCart]=useState([1,2])
-  const addtocart=(product)=>{
-    setCart([...cart,product])
-    console.log(cart)
-
-  }
+  
   return (
     <>
     <BrowserRouter>
-  <Navbar length={cart.length}/>
+  <Navbar />
     <Routes>
       <Route path="/" element={<Home/>}/>
       <Route path="/about" element={<About/>}/>
@@ -36,13 +31,14 @@ function App(){
 
       <Route path="/login" element={<Login/>}/>
       <Route path="/cart" element={<ProtectedRoute><CartPage/></ProtectedRoute>}/>
-      <Route path="/productpage/:category" element={<ProductBycategory addtocart={addtocart}/>}/> 
+      <Route path="/productpage/:category" element={<ProductBycategory/>}/> 
       {/* dynamic route */}
-      <Route path="/productpage/:category/productdescription/:id" element={<PrdDesc addtocart={addtocart}/>}/>
+      <Route path="/productpage/:category/productdescription/:id" element={<PrdDesc/>}/>
 
     </Routes>
     <Footer/>
     </BrowserRouter>
+    <Toaster></Toaster>
     
     </>
   )
