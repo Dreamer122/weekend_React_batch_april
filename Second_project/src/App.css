@@ -1,0 +1,29 @@
+
+/*  */
+.active{
+  border:1px solid #bf1650;
+}
+.nav{
+  display:flex;
+  justify-content:space-around;
+  height:80px;
+  width:100%;
+  background-color:#081229;
+  color:#bf1650;
+  font-size:22px;
+  align-items:center;
+}
+.right> ul{
+  display:flex;
+ 
+  list-style-type:none;
+}
+.right> ul>li{
+  margin:0 20px;
+}
+
+<<<<<<< HEAD
+/
+
+=======
+>>>>>>> 40ab9c9b687f448a3cc7e21e751c88d86db656d6
