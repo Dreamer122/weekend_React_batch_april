@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice,nanoid } from "@reduxjs/toolkit";
 
 const todoSlice=createSlice({
     name:"todo",
@@ -8,17 +8,19 @@ const todoSlice=createSlice({
     reducers:{
         add:( state,action)=>{
             const newtodo={
-                id:2,
+                id:nanoid(4),
                 text:action.payload
             }
             state.todos.push(newtodo)
         },
-        update:()=>{
-            console.log("hello")
+        update:(state,action)=>{
+            console.log(action)
+            const newarray=state.todos.map((obj)=>obj.id==action.payload.id?{id:obj.id,text:action.payload.editText}:obj)
+            state.todos=newarray
         },
-        remove:()=>{
-            console.log("hello")
-
+        remove:(state,action)=>{
+           const newarray=state.todos.filter((obj)=>obj.id!=action.payload)
+            state.todos=newarray
         }
     },
 })
