@@ -26,7 +26,7 @@ export const Login = () => {
         userId: session.userId,
       };
 
-      localStorage.setItem("logindetails", JSON.stringify(loginData));
+      localStorage.setItem("loginDetails", JSON.stringify(loginData));
       dispatch(signin(loginData));
 
       toast.success("Login successful");

@@ -9,8 +9,10 @@ export const Dashboard = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const result = await getUserData(user.userId);
+      // console.log(typeof(user),user.userId)
+      const result = await getUserData(user?.userId);
       setUserData(result);
+      console.log(result)
     };
 
     getData();
