@@ -1,26 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { getUserData } from "../../lib/database";
+import { getUserData,getUserAllPost } from "../../lib/database";
 import { Link } from "react-router-dom";
+import { BlogCard } from "./BlogCard";
 
 export const Dashboard = () => {
   const { user } = useSelector((state) => state.auth);
   const [userData, setUserData] = useState(null);
+  const [posts,setPosts]=useState([])
+const userid=user.userId
 
+  const getpost= async()=>{
+   const res= await getUserAllPost(userid)
+   setPosts(res)
+  console.log("user posts",res)
+
+  }
   useEffect(() => {
     const getData = async () => {
-      // console.log(typeof(user),user.userId)
       const result = await getUserData(user?.userId);
       setUserData(result);
       console.log(result)
     };
 
     getData();
+    getpost();
   }, [user.userId]);
 
   if (!userData) return <p>Loading...</p>;
 
   return (
+    <div>
     <div className="flex gap-4 items-center">
       <img
         src={
@@ -44,6 +54,18 @@ export const Dashboard = () => {
       <Link to="/createpost" className="text-blue-600 underline">
         Create Post
       </Link>
+    </div>
+
+    <div>
+{
+  posts.length===0 ? <p>No posts found</p> : posts.map((post)=>{
+    return(
+<BlogCard key={post.$id} post={post}/>
+    )
+  })
+}
+
+    </div>
     </div>
   );
 };

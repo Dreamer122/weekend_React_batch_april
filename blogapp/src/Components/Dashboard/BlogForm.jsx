@@ -9,11 +9,15 @@ export const BlogForm = ({
   defaultValues = {},
 
 }) => {
+
+// get userid from redux
+
   const {
     register,
     handleSubmit,
     setValue,
     watch,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -34,6 +38,7 @@ export const BlogForm = ({
   const contentValue = watch("content");
   const thumbnail=watch("thumbnail")
   useEffect(()=>{
+    console.log(thumbnail)
     console.log(thumbnail?.[0])
     if(thumbnail?.[0] instanceof File){
         const filereader=new FileReader()
@@ -45,6 +50,11 @@ export const BlogForm = ({
 
     }
   },[thumbnail])
+
+  useEffect(()=>{
+reset(defaultValues)
+
+  },[])
 
 
 //   upload thumbnail and submit data
@@ -118,7 +128,7 @@ export const BlogForm = ({
         <label className="font-semibold">Content</label>
         <SunEditor
           onChange={handleEditor}
-          defaultValue={defaultValues.content || ""}
+          // defaultValue={defaultValues.content || ""}
           height="300px"
           setOptions={{
             buttonList: [

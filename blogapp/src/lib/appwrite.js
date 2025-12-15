@@ -10,4 +10,4 @@ const tablesDB = new TablesDB(client);
 const storage = new Storage(client);
 
 
-export { client, account, databases ,tablesDB};
+export { client, account, databases ,tablesDB,storage};
